@@ -89,6 +89,16 @@ public class ListDemo
                 } 
             }
             */
+
+            /*An enhanced for loop AUTOMATICALLY creates an iterator! */
+            for (String c: staff)
+                if(c.equals("Harry"))
+                {
+                    //staff.add("Charlie"); 
+                }
+            {
+
+            }
          }
     }
 }
