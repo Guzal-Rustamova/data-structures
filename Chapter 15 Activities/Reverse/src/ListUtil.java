@@ -13,14 +13,18 @@ public class ListUtil
     */
     public static void reverse(LinkedList<String> strings)
     {
-        ListIterator <String> iteratorOG = strings.listIterator(); 
         ListIterator <String> iterator = strings.listIterator(); 
+        int count = 0; 
         while(iterator.hasNext())
         {
-            String holder = iteratorOG.next(); 
-            iterator = strings.listIterator(strings.size());
-            iterator.remove(); 
+            
+            iterator = strings.listIterator(count); 
+            String holder = iterator.next();
+            iterator = strings.listIterator(strings.size()+count); 
             iterator.add(holder); 
+            count++; 
+    
+          
             
         }
     }
