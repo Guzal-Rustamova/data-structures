@@ -15,25 +15,37 @@ public class Sieve
         System.out.println("Compute primes up to which integer?");
         int n = in.nextInt();
 
+        // Your work goes here
         Set <Integer> numbers = new HashSet<>(); 
+         
         for(int x = 2; x <n+1; x++)
         {
             numbers.add(x); 
         }
+        int size = numbers.size();
 
         Iterator <Integer> iterator = numbers.iterator(); 
-        for(int divNum = 2; divNum < n+1; divNum++)
+        while(iterator.hasNext())
         {
-            int num = iterator.next(); 
-            if (num%divNum==0)
+            int num = iterator.next();
+           
+            for(int divNum = 2; divNum < n+1; divNum++)
             {
+                 
+                if (num%divNum==0 && num != divNum)
+                {
+                  
+                    iterator.remove();
+                    break;
+                }
                 
             }
         }
+        System.out.println(numbers);
 
 
-        // Your work goes here
-        . . .
+        
+      
 
 
 

@@ -36,7 +36,21 @@ public class SudokuSolver {
         }
 
         // create the list of sets for each row (this.rows)
-        // ...
+        
+        Set <Integer> row1 = new HashSet<>(); 
+        Set <Integer> row2 = new HashSet<>(); 
+        Set <Integer> row3 = new HashSet<>(); 
+        Set <Integer> row4 = new HashSet<>(); 
+        Set <Integer> row5 = new HashSet<>(); 
+        Set <Integer> row6 = new HashSet<>(); 
+        Set <Integer> row7 = new HashSet<>(); 
+        Set <Integer> row8 = new HashSet<>(); 
+        Set <Integer> row9 = new HashSet<>(); 
+
+        this.rows.add(row1); this.rows.add(row2); this.rows.add(row3); this.rows.add(row4); this.rows.add(row5); this.rows.add(row6); 
+        this.rows.add(row7); this.rows.add(row8); this.rows.add(row9); 
+        
+  
 
         // create the list of sets for each col (this.cols)
         // ...
