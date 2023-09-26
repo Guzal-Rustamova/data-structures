@@ -37,23 +37,34 @@ public class SudokuSolver {
 
         // create the list of sets for each row (this.rows)
         
-        Set <Integer> row1 = new HashSet<>(); 
-        Set <Integer> row2 = new HashSet<>(); 
-        Set <Integer> row3 = new HashSet<>(); 
-        Set <Integer> row4 = new HashSet<>(); 
-        Set <Integer> row5 = new HashSet<>(); 
-        Set <Integer> row6 = new HashSet<>(); 
-        Set <Integer> row7 = new HashSet<>(); 
-        Set <Integer> row8 = new HashSet<>(); 
-        Set <Integer> row9 = new HashSet<>(); 
+        this.rows = new ArrayList<Set<Integer>>(); 
 
-        this.rows.add(row1); this.rows.add(row2); this.rows.add(row3); this.rows.add(row4); this.rows.add(row5); this.rows.add(row6); 
-        this.rows.add(row7); this.rows.add(row8); this.rows.add(row9); 
+        for (int row = 0; row < N; row++)
+        {
+            Set <Integer> currentRow = new HashSet<>(); 
+            for (int col = 0; col < N; col++)
+            {
+                currentRow.add(this.grid[row][col]); 
+                this.rows.add(currentRow); 
+            }
+        }
         
   
 
         // create the list of sets for each col (this.cols)
         // ...
+
+        this.cols = new ArrayList<Set<Integer>>(); 
+
+        for (int col = 0; col < N; col++)
+        {
+            Set <Integer> currentCol = new HashSet<>(); 
+            for(int row = 0; row < N; row++)
+            {
+                currentCol.add(grid[row][col]);
+                this.cols.add(currentCol);
+            }
+        }
 
         // create the list of sets for each square (this.squares)
         /* the squares are added to the list row-by-row:
@@ -63,8 +74,36 @@ public class SudokuSolver {
          */
         // ...
 
+        this.squares = new ArrayList<Set<Integer>>(); 
+
+        int start = 0; 
+        for (int sq = 0; sq < 2*M; sq++)
+        {
+            Set <Integer> currentSq = new HashSet<>(); 
+            for (int row = start; row < M; row++)
+            {
+                for (int col = start; col < M; col++)
+                {
+                    currentSq.add(grid[row][col]); 
+                }
+            }
+            this.squares.add(currentSq); 
+            start+=3;
+        }
+
+        
+
+
+
         // create a hash set for [1..9] (this.nums)
         // ...
+
+        this.nums = new HashSet<>(); 
+
+        for (int x = 1; x < 10; x++)
+        {
+            this.nums.add(x);
+        }
 
         // visually inspect that all the sets are correct
         for (int row = 0; row < N; row++) {
@@ -155,7 +194,7 @@ public class SudokuSolver {
     }
 
     public static void main(String[] args) {
-        String fileName = "src/puzzle1.txt";
+        String fileName = "Chapter 15 Activities/Sudoku/src/puzzle1.txt";
 
         SudokuSolver solver = new SudokuSolver(fileName);
         System.out.println(solver);
