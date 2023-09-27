@@ -45,9 +45,10 @@ public class SudokuSolver {
             for (int col = 0; col < N; col++)
             {
                 currentRow.add(this.grid[row][col]); 
-                this.rows.add(currentRow); 
             }
+            this.rows.add(currentRow); 
         }
+        
         
   
 
@@ -62,8 +63,8 @@ public class SudokuSolver {
             for(int row = 0; row < N; row++)
             {
                 currentCol.add(grid[row][col]);
-                this.cols.add(currentCol);
             }
+            this.cols.add(currentCol);
         }
 
         // create the list of sets for each square (this.squares)
@@ -77,12 +78,12 @@ public class SudokuSolver {
         this.squares = new ArrayList<Set<Integer>>(); 
 
         int start = 0; 
-        for (int sq = 0; sq < 2*M; sq++)
+        for (int sq = 0; sq < N; sq++)
         {
             Set <Integer> currentSq = new HashSet<>(); 
-            for (int row = start; row < M; row++)
+            for (int row = start; row < start+3; row++)
             {
-                for (int col = start; col < M; col++)
+                for (int col = start; col < start+3; col++)
                 {
                     currentSq.add(grid[row][col]); 
                 }
@@ -152,6 +153,41 @@ public class SudokuSolver {
         
         // ...
 
+        for (Set<Integer> num: rows)
+        {
+            for (int n = 0; n < this.nums.size(); n++)
+            {
+                if (possibleNums.equals(num))
+                {
+                    possibleNums.remove(num); 
+                }
+            }
+        }
+
+        for (Set<Integer> num: cols)
+        {
+            for (int n = 0; n < this.nums.size(); n++)
+            {
+                if (possibleNums.equals(num))
+                {
+                    possibleNums.remove(num); 
+                }
+            }
+        }
+
+        for (Set<Integer> num: squares)
+        {
+            for (int n = 0; n < this.nums.size(); n++)
+            {
+                if (possibleNums.equals(num))
+                {
+                    possibleNums.remove(num); 
+                }
+            }
+        }
+
+        System.out.println("possible nums: "+ possibleNums); 
+
         // if there are no possible numbers, we cannot solve the board in its current state
         if (possibleNums.isEmpty()) {
             return false;
@@ -161,6 +197,22 @@ public class SudokuSolver {
         for (Integer possibleNum : possibleNums) {
             // update the grid and all three corresponding sets with possibleNum
             // ...
+
+            int possibleNum1 = Interger.intValue();
+            for (int row = 0; row < N; row++)
+            {
+                for (int col = 0; col < N; col++)
+                {
+                    if (grid[row][col] == 0)
+                    {
+                        grid[row][col] = possibleNum; 
+                        row.set(row, (int) possibleNum);
+                        break;
+                    }
+                }
+            }
+
+            
 
             // recursively solve the board
             if (this.solve()) {
