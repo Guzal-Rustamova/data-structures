@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import javax.xml.bind.annotation.XmlElementDecl.GLOBAL; 
+
 public class SudokuSolver {
     private final int M = 3;
     private final int N = M * M;
@@ -156,38 +158,12 @@ public class SudokuSolver {
         
         // ...
 
-        for (Set<Integer> num: rows)
-        {
-            for (int n = 0; n < this.nums.size(); n++)
-            {
-                if (possibleNums.equals(num))
-                {
-                    possibleNums.remove(num); 
-                }
-            }
-        }
+        possibleNums.removeAll(this.rows.get(nextRow)); 
+        possibleNums.removeAll(this.cols.get(nextCol)); 
+        possibleNums.removeAll(this.squares.get((nextRow/3)*3+(nextCol/3)));
+    
 
-        for (Set<Integer> num: cols)
-        {
-            for (int n = 0; n < this.nums.size(); n++)
-            {
-                if (possibleNums.equals(num))
-                {
-                    possibleNums.remove(num); 
-                }
-            }
-        }
-
-        for (Set<Integer> num: squares)
-        {
-            for (int n = 0; n < this.nums.size(); n++)
-            {
-                if (possibleNums.equals(num))
-                {
-                    possibleNums.remove(num); 
-                }
-            }
-        }
+       
 
         System.out.println("possible nums: "+ possibleNums); 
 
@@ -200,20 +176,11 @@ public class SudokuSolver {
         for (Integer possibleNum : possibleNums) {
             // update the grid and all three corresponding sets with possibleNum
             // ...
+            this.grid[nextRow][nextCol] = possibleNum; 
+            this.rows.get(nextRow).add(possibleNum); 
+            this.cols.get(nextCol).add(possibleNum);
+            this.squares.get((nextRow/3)*3+(nextCol/3)).add(possibleNum);
 
-            int possibleNum1 = Integer.intValue();
-            for (int row = 0; row < N; row++)
-            {
-                for (int col = 0; col < N; col++)
-                {
-                    if (grid[row][col] == 0)
-                    {
-                        grid[row][col] = possibleNum; 
-                        row.set(row, possibleNum1);
-                        break;
-                    }
-                }
-            }
 
             
 
@@ -228,6 +195,10 @@ public class SudokuSolver {
                  sets.
                  */
                 // ...
+                this.grid[nextRow][nextCol] = 0; 
+                this.rows.get(nextRow).remove(possibleNum);
+                this.cols.get(nextCol).remove(possibleNum);
+                this.squares.get((nextRow/3)*3+(nextCol/3)).remove(possibleNum);
             }
         }
 
