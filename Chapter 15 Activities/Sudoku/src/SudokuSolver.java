@@ -77,19 +77,22 @@ public class SudokuSolver {
 
         this.squares = new ArrayList<Set<Integer>>(); 
 
-        int start = 0; 
-        for (int sq = 0; sq < N; sq++)
+       
+        for (int sq = 0; sq < N; sq+=3)
         {
-            Set <Integer> currentSq = new HashSet<>(); 
-            for (int row = start; row < start+3; row++)
+            for (int sq1 = 0; sq1 < N; sq1+=3)
             {
-                for (int col = start; col < start+3; col++)
+            Set <Integer> currentSq = new HashSet<>(); 
+            for (int row = sq; row < sq+3; row++)
+            {
+                for (int col = sq1; col < sq1+3; col++)
                 {
                     currentSq.add(grid[row][col]); 
                 }
             }
             this.squares.add(currentSq); 
-            start+=3;
+        
+            }
         }
 
         
@@ -198,7 +201,7 @@ public class SudokuSolver {
             // update the grid and all three corresponding sets with possibleNum
             // ...
 
-            int possibleNum1 = Interger.intValue();
+            int possibleNum1 = Integer.intValue();
             for (int row = 0; row < N; row++)
             {
                 for (int col = 0; col < N; col++)
@@ -206,7 +209,7 @@ public class SudokuSolver {
                     if (grid[row][col] == 0)
                     {
                         grid[row][col] = possibleNum; 
-                        row.set(row, (int) possibleNum);
+                        row.set(row, possibleNum1);
                         break;
                     }
                 }
