@@ -29,14 +29,13 @@ public class Gradebook
                 System.out.println("Grade: ");
                 String grade = in.next(); 
                 grades.put(name, grade); 
-                in.next(); 
 
             } else if (input.equals("R"))
             {
                 System.out.println("Name: "); 
                 String name = in.next(); 
                 grades.remove(name); 
-                in.next(); 
+
             } else if (input.equals("M"))
             {
                 System.out.println("Name: "); 
@@ -44,13 +43,13 @@ public class Gradebook
                 System.out.println("Grade: ");
                 String grade = in.next(); 
                 grades.put(name, grade); 
-                in.next();
+    
             } else if (input.equalsIgnoreCase("P"))
             {
                 Set <String> set = grades.keySet(); 
                 for(String key: set)
                 {
-                    System.out.println(key+"("+key.hashCode()+"): "+grades.get(key)); 
+                    System.out.println(key+": "+grades.get(key)); 
                 }
             } else
             {
