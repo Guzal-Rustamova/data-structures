@@ -24,13 +24,13 @@ public class StringLengthMap2
             {
                 String word = clean(in.next());
                 Integer len = word.length();
-                String oldWord = words.get(len);
+    
 
                 // Update the map here
                 // Use the Java 8 merge() method
 
 
-                words.merge(len, word, (oldWord, word)->oldWord+word);
+                words.merge(len, word, (v1, v2)->v1+" , "+v2);
             
                 
 
@@ -39,6 +39,11 @@ public class StringLengthMap2
 
             // Print the strings, in increasing order of their length
             // Use this format: 1: i, a, i
+            Set <Integer> keys = words.keySet(); 
+            for (Integer key: keys)
+            {
+                System.out.println(key+": "+words.get(key));
+            }
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
