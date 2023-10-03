@@ -28,6 +28,8 @@ public class FirstLetterMap
                 // Update the map here
                 // Use the Java 8 merge method
                 words.merge(c, word, (v1, v2)->v1+" , "+v2);
+                //words.merge(c, //the key to look up
+                //new HashMap<>(Arrays.asList(word), //default))
 
             }
 
