@@ -2,7 +2,7 @@ public class Grid
 {
     private static final int SIZE = 10;
     int[][] pixels = new int[SIZE][SIZE];
-    . . .
+    Stack <pair> cubes = new Stack<>(); 
 
     /**
      * Flood fill, starting with the given row and column.
@@ -11,6 +11,7 @@ public class Grid
     {
         . . .
     }
+    
 
     @Override
     public String toString()
