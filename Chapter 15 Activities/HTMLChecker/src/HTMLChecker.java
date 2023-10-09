@@ -17,18 +17,70 @@ public class HTMLChecker
 {
     public static void main(String[] args)
     {
-        String filename = "src/TagSample1.html";
+        String filename = "Chapter 15 Activities/HTMLChecker/src/TagSample3.html";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
-            // Your code goes here
-            . . .
+            // Your code goes here 
+            Stack <String> tags = new Stack<>(); 
+            Stack <String> miniStack = new Stack<>();
+          
+            String HTML = "";
+            String HTML2 = "";
+            
+            String HTML3 = ""; 
+            String HTML4 = ""; 
+            
+            while(in.hasNext())
+            {
+                tags.push(in.next()); 
+            }
+
+            for (int j = 0; j < tags.size(); j++)
+            {
+                String currentTag = tags.pop(); 
+                for (int i = 0; i < currentTag.length(); i++)
+                {
+                    if (currentTag.substring(i, i+1) != "<" && currentTag.substring(i, i+1) != ">" && currentTag.substring(i, i+1) != "/")
+                    {
+                        HTML2 += currentTag.substring(i, i+1); 
+
+                    }
+                }
+                for(int k = 0; k < tags.size(); k++)
+                {
+                    String nextTag = tags.pop();
+                    miniStack.push(nextTag); 
+                    for (int i = 0; i < currentTag.length(); i++)
+                    {
+                        if (nextTag.substring(i, i+1) != "<" && currentTag.substring(i, i+1) != ">" && currentTag.substring(i, i+1) != "/")
+                        {
+                            HTML += nextTag.substring(i, i+1); 
+
+                        }
+                        if (HTML2.equals(HTML))
+                        {
+                        break; 
+                        }
+
+                    }
 
 
-        } catch (FileNotFoundException e)
+                    
+                }
+            }
+            
+            
+
+
+        \} 
+        catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
         }
 
     }
+    
 }
+
+

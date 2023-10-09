@@ -59,5 +59,4 @@ public class FirstLetterMap
         }
         return r.toLowerCase();
     }
-
 }
