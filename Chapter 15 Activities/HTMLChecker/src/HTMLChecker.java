@@ -17,63 +17,50 @@ public class HTMLChecker
 {
     public static void main(String[] args)
     {
-        String filename = "Chapter 15 Activities/HTMLChecker/src/TagSample3.html";
+        String filename = "Chapter 15 Activities/HTMLChecker/src/TagSample2.html";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here 
             Stack <String> tags = new Stack<>(); 
-            Stack <String> miniStack = new Stack<>();
+            Stack <String> holder = new Stack<>();
           
-            String HTML = "";
-            String HTML2 = "";
-            
-            String HTML3 = ""; 
-            String HTML4 = ""; 
             
             while(in.hasNext())
             {
                 tags.push(in.next()); 
             }
-
-            for (int j = 0; j < tags.size(); j++)
+            for (String tag: tags)
             {
-                String currentTag = tags.pop(); 
-                for (int i = 0; i < currentTag.length(); i++)
+                if (tag.contains("<") && !tag.contains("</"))
                 {
-                    if (currentTag.substring(i, i+1) != "<" && currentTag.substring(i, i+1) != ">" && currentTag.substring(i, i+1) != "/")
-                    {
-                        HTML2 += currentTag.substring(i, i+1); 
-
-                    }
-                }
-                for(int k = 0; k < tags.size(); k++)
+                    holder.push(tag); 
+                }else if(tag.contains("</"))
                 {
-                    String nextTag = tags.pop();
-                    miniStack.push(nextTag); 
-                    for (int i = 0; i < currentTag.length(); i++)
+                    if(holder.isEmpty())
                     {
-                        if (nextTag.substring(i, i+1) != "<" && currentTag.substring(i, i+1) != ">" && currentTag.substring(i, i+1) != "/")
-                        {
-                            HTML += nextTag.substring(i, i+1); 
-
-                        }
-                        if (HTML2.equals(HTML))
-                        {
-                        break; 
-                        }
-
+                        System.out.println("The HTML tags are NOT properly implemented.");
                     }
 
-
-                    
+                    String openingTag = holder.pop(); 
+                    if (!openingTag.equals("<"+tag.substring(2)))
+                    {
+                        System.out.println("The HTML tags are NOT properly implemented.");
+                    }
                 }
+                
+            } 
+            if (holder.isEmpty())
+            {
+                System.out.println("The HTML tags are properly implemented.");
             }
             
             
+            
+            
 
 
-        \} 
+        } 
         catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
