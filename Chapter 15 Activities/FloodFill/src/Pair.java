@@ -7,6 +7,7 @@ public class Pair {
         this.row = row; 
         this.col = col; 
     }
+    /* 
     public void pair()
     {
         for (int r = 0; r < arr.size(); r++)
@@ -14,4 +15,5 @@ public class Pair {
             
         }
     }
+    */
 }
