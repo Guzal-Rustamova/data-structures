@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
     in the list by following links and counting the
     elements until the end of the list is reached.
 */
-public class LinkedList
+public class LinkedList 
 {
     private Node first;
 
@@ -24,7 +24,13 @@ public class LinkedList
     */
     public int size()
     {
-        . . .
+        if (first == null)
+        {
+            return 0; 
+        }else{
+            
+        }
+
     }
 
     /**

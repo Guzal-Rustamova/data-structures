@@ -1,7 +1,8 @@
 /**
     A tester program for the get and set functions of the LinkedList class.
 */
-public class ListTester
+
+public class ListTester 
 {
     public static void main(String[] args)
     {
