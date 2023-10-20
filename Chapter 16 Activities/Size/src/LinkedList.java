@@ -24,11 +24,18 @@ public class LinkedList
     */
     public int size()
     {
+        Node currentNode = first;
         if (first == null)
         {
             return 0; 
         }else{
-            
+            int size = 1;
+            while (currentNode != null) 
+            {
+                currentNode = first.next;
+                size++; 
+            }
+            return size;
         }
 
     }

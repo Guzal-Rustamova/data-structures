@@ -42,7 +42,6 @@ public class LinkedList
     public boolean contains(Object obj)
     {
         LinkedList tempList = this; 
-        System.out.println("Find "+obj);
         if (tempList.size() == 0 || first == null)
         {
             return false; 
@@ -50,7 +49,6 @@ public class LinkedList
             while(tempList.size() != 0)
             {
                 Object newObj = tempList.removeFirst(); 
-                System.out.println(newObj); 
                 if (newObj.equals(obj))
                 {
                     return true; 

@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 public class LinkedList
 {
     private Node first;
+    public int size;
 
     /**
         Constructs an empty linked list.
@@ -26,7 +27,15 @@ public class LinkedList
     */
     public int size()
     {
-        . . .
+        if (first == null)
+        {
+            return size;
+        } else {
+            size++;
+            first = first.next; 
+            return size(); 
+        }
+    
     }
 
 
