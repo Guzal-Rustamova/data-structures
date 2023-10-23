@@ -23,10 +23,8 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        . . .
-
-
-
+        this.head.next = null; 
+        this.tail.next = this.head; 
     }
 
     /**
