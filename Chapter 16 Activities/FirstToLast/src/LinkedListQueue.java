@@ -33,6 +33,15 @@ public class LinkedListQueue
         this.tail.next = holderNode; //tail points to Tom
         this.tail = holderNode; //Tom is the new tail
 
+        /*
+         
+        if (head != tail)
+        tail.next = head; 
+        head = head.next; 
+        tail.next.next = null; 
+
+         */
+
 
         /* 
         this.tail.next = this.head; 

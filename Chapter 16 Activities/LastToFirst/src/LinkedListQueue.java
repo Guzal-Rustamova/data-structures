@@ -40,6 +40,19 @@ public class LinkedListQueue
         tail = previous;
         tail.next = null;
 
+        /*
+         if (tail != head)
+            Node check = head.next; 
+            tail.next = head; 
+            head = tail; 
+
+            while (check !=null)
+                if (check.next = null)
+                tail = check
+
+            check = check.next; 
+         */
+
 
     }
 
