@@ -23,8 +23,24 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        this.head.next = null; 
+        if (head == null || head == tail)
+        {
+            return;
+        }
+        Node holderNode = this.head; //Tom
+        this.head = this.head.next; //this.head = Diana
+        holderNode.next = null; //Tom points to null
+        this.tail.next = holderNode; //tail points to Tom
+        this.tail = holderNode; //Tom is the new tail
+
+
+        /* 
         this.tail.next = this.head; 
+        this.head.next = null; 
+        Node holderNode = this.head; 
+        this.head = this.tail; 
+        this.tail = holderNode; 
+        */
     }
 
     /**

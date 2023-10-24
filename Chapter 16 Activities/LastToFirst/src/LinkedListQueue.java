@@ -22,10 +22,23 @@ public class LinkedListQueue
     */
     public void lastToFirst()
     {
-        . . .
+        if (empty() || head == tail)
+        {
+            return; 
+        }
+        Node current = head;
+        Node previous = null;
 
+        while (current.next != null) {
+        previous = current;
+        current = current.next;
+        }
 
-
+        // Adjust the pointers to move the tail to the front
+        current.next = head;
+        head = tail;
+        tail = previous;
+        tail.next = null;
 
 
     }
