@@ -92,7 +92,9 @@ public class BinaryTree
     */
     public BinaryTree left() 
     { 
-        return this.root.left;
+        BinaryTree subtree = new BinaryTree(); 
+        subtree.root = this.root.left;
+        return subtree;
     }
 
     /**
@@ -101,6 +103,8 @@ public class BinaryTree
     */
     public BinaryTree right() 
     { 
-        return null;
+        BinaryTree subtree = new BinaryTree(); 
+        subtree.root = this.root.right; 
+        return subtree; 
     }
 }
