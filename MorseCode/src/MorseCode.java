@@ -1,4 +1,7 @@
 import java.util.TreeMap;
+
+import BinaryTree.Node;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -71,9 +74,8 @@ public class MorseCode
      */
     private static void addSymbol(char letter, String code)
     {
-        /*
-            !!! INSERT CODE HERE
-        */
+        codeMap.put(letter, code);
+        treeInsert(letter, code);
     }
 
     /**
@@ -85,9 +87,17 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
-        /*
-            !!! INSERT CODE HERE
-        */
+        BinaryTree decodeTree = new BinaryTree(); 
+        for (int x = 0; x < code.length(); x++)
+        {
+            String c = code.substring(x, x+1); 
+            Node newNode = new Node(); 
+            newNode.data = c; 
+            if (c.equals("."))
+            {
+                decodeTree.addNode(newNode); 
+            }
+        }
     }
 
     /**
@@ -100,9 +110,7 @@ public class MorseCode
     {
         StringBuffer morse = new StringBuffer(400);
 
-        /*
-            !!! INSERT CODE HERE
-        */
+        if ()
 
         return morse.toString();
     }
