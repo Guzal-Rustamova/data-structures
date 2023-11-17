@@ -68,7 +68,6 @@ public class Tree
     public int leafCount()
     {
         int leaves = 0;
-        System.out.println(root.children);
         if (root.children.size() == 0)
         {
             return 1;
