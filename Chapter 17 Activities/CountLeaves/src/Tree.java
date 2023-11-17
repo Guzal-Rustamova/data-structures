@@ -68,6 +68,7 @@ public class Tree
     public int leafCount()
     {
         int leaves = 0;
+        System.out.println(root.children);
         if (root.children.size() == 0)
         {
             return 1;
@@ -76,7 +77,7 @@ public class Tree
         {
             for (Node child: root.children)
             {
-                return leaves += leaves + leafCount();
+                return leaves += new Tree (child).leafCount();
             }
         }
         return leaves; 

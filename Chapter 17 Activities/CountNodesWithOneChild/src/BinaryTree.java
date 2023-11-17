@@ -105,14 +105,33 @@ public class BinaryTree
     public int countNodeswithOneChild()
     {
         int count = 0; 
-        if (root.data != null)
+        if (this.root == null)
+        {
+            return 0;
+        }
+        
+        if (this.height() != 1)
         {
             if ((root.left.data != null && root.right.data == null) || (root.left.data == null && root.right.data != null))
             {
-                return 1; 
+                count++; 
             
+            }
+            else{
+                if(root.left != null)
+                {
+                    BinaryTree left = new BinaryTree(this.root.left); 
+                    left.countNodeswithOneChild();
+                }
+                if(root.right != null)
+                {
+                    BinaryTree right = new BinaryTree(this.root.right);
+                    right.countNodeswithOneChild();
+                }
             }
         
         }
+        return count;
+            
     }
 }
