@@ -87,17 +87,20 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
-        BinaryTree decodeTree = new BinaryTree(); 
         for (int x = 0; x < code.length(); x++)
         {
             String c = code.substring(x, x+1); 
-            Node newNode = new Node(); 
-            newNode.data = c; 
+            TreeNode newNode = new TreeNode(letter, null, null);
             if (c.equals("."))
             {
-                decodeTree.addNode(newNode); 
+                decodeTree.setLeft(newNode);
+            }
+            if(c.equals("-"))
+            {
+                decodeTree.setRight(newNode);
             }
         }
+
     }
 
     /**
@@ -110,7 +113,7 @@ public class MorseCode
     {
         StringBuffer morse = new StringBuffer(400);
 
-        if ()
+        
 
         return morse.toString();
     }
@@ -125,9 +128,17 @@ public class MorseCode
     {
         StringBuffer text = new StringBuffer(100);
 
-        /*
-            !!! INSERT CODE HERE
-        */
+        for (int x = 0; x < morse.length(); x++)
+        {
+            if (morse.substring(x, x+1).equals(" "))
+            {
+                text.append(" "); 
+            }
+            else if (decode)
+            {
+
+            }
+        }
 
         return text.toString();
     }
