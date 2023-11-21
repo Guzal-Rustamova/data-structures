@@ -1,6 +1,6 @@
 import java.util.TreeMap;
 
-import BinaryTree.Node;
+
 
 import java.util.Collections;
 import java.util.List;
@@ -112,8 +112,25 @@ public class MorseCode
     public static String encode(String text)
     {
         StringBuffer morse = new StringBuffer(400);
-
-        
+        for (int x = 0; x < morse.length(); x++)
+        {
+            while (text.substring(x, x+1).equals(DOT) || text.substring(x, x+1).equals(DASH) || text.substring(x,x+1).equals(" "))
+                if (text.substring(x, x+1).equals(" "))
+                {
+                    morse.append(" "); 
+                    System.out.println(morse); 
+                }
+                if (text.substring(x, x+1).equals(DOT))
+                {
+                    decodeTree.getLeft(); 
+                }
+                if (text.substring(x, x+1).equals(DASH))
+                {
+                    decodeTree.getRight();
+                }
+            }
+            morse.append(decodeTree.getValue()); 
+            System.out.println(morse); 
 
         return morse.toString();
     }
@@ -127,19 +144,15 @@ public class MorseCode
     public static String decode(String morse)
     {
         StringBuffer text = new StringBuffer(100);
-
+        int space = morse.indexOf(" "); 
         for (int x = 0; x < morse.length(); x++)
         {
             if (morse.substring(x, x+1).equals(" "))
             {
                 text.append(" "); 
             }
-            else if (decode)
-            {
-
-            }
+           
         }
-
         return text.toString();
     }
 }
