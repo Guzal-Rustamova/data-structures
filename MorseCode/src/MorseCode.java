@@ -89,16 +89,33 @@ public class MorseCode
     {
         for (int x = 0; x < code.length(); x++)
         {
-            String c = code.substring(x, x+1); 
-            TreeNode newNode = new TreeNode(letter, null, null);
-            if (c.equals("."))
+            String c = code; 
+            TreeNode newNode = null;
+            if (c.equals (""))
+                return; 
+
+            while (!c.equals(""))
             {
-                decodeTree.setLeft(newNode);
+                c.substring(1);
+                if (c.equals("."))
+                {
+                    decodeTree = decodeTree.getLeft();
+                }
+                if(c.equals("-"))
+                {
+                    decodeTree = decodeTree.getRight();
+                }
+
+                if (decodeTree == null)
+                {
+                    if (c.equals("."))
+                        newNode.setLeft(decodeTree); 
+                    else
+                        newNode.setRight(decodeTree); 
+                }
             }
-            if(c.equals("-"))
-            {
-                decodeTree.setRight(newNode);
-            }
+
+            decodeTree.setValue(letter);
         }
 
     }
@@ -122,11 +139,11 @@ public class MorseCode
                 }
                 if (text.substring(x, x+1).equals(DOT))
                 {
-                    decodeTree.getLeft(); 
+                    decodeTree = decodeTree.getLeft(); 
                 }
                 if (text.substring(x, x+1).equals(DASH))
                 {
-                    decodeTree.getRight();
+                    decodeTree = decodeTree.getRight();
                 }
             }
             morse.append(decodeTree.getValue()); 
@@ -143,14 +160,14 @@ public class MorseCode
      */
     public static String decode(String morse)
     {
-        StringBuffer text = new StringBuffer(100);
-        int space = morse.indexOf(" "); 
+        StringBuffer text = new StringBuffer(100); 
         for (int x = 0; x < morse.length(); x++)
         {
-            if (morse.substring(x, x+1).equals(" "))
+            if (morse.substring(x, x+1).equals(decodeTree.getValue()))
             {
-                text.append(" "); 
-            }
+                text.append(decodeTree.getValue()); 
+            } 
+            decode(morse); 
            
         }
         return text.toString();
