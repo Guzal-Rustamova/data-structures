@@ -19,6 +19,7 @@ public class MorseCode
         MorseCode.start();  
         System.out.println(MorseCode.encode("Watson come here"));
         BTreePrinter.printNode(decodeTree);
+   
     }
 
     public static void start()
@@ -87,37 +88,33 @@ public class MorseCode
      */
     private static void treeInsert(char letter, String code)
     {
-        for (int x = 0; x < code.length(); x++)
+        String c = code; 
+        char cChar;
+        TreeNode currentNode = decodeTree;
+        if (c.equals (""))
+            return; 
+
+        while (!c.equals(""))
         {
-            String c = code; 
-            TreeNode newNode = null;
-            if (c.equals (""))
-                return; 
-
-            while (!c.equals(""))
+            cChar = c.charAt(0);
+            if (cChar == '.')
             {
-                c.substring(1);
-                if (c.equals("."))
-                {
-                    decodeTree = decodeTree.getLeft();
-                }
-                if(c.equals("-"))
-                {
-                    decodeTree = decodeTree.getRight();
-                }
-
-                if (decodeTree == null)
-                {
-                    if (c.equals("."))
-                        newNode.setLeft(decodeTree); 
-                    else
-                        newNode.setRight(decodeTree); 
-                }
+                if (currentNode.getLeft() == null)
+                    currentNode.setLeft(new TreeNode(" ")); 
+                currentNode = currentNode.getLeft(); 
             }
-
-            decodeTree.setValue(letter);
+            if(cChar == '-')
+            {
+                if (currentNode.getRight() == null)
+                    currentNode.setRight(new TreeNode(" ")); 
+                currentNode = currentNode.getRight();
+            }
+            c = c.substring(1);
         }
 
+        currentNode.setValue(letter);
+    
+        
     }
 
     /**
@@ -129,25 +126,23 @@ public class MorseCode
     public static String encode(String text)
     {
         StringBuffer morse = new StringBuffer(400);
-        for (int x = 0; x < morse.length(); x++)
+        while (!text.equals(""))
         {
-            while (text.substring(x, x+1).equals(DOT) || text.substring(x, x+1).equals(DASH) || text.substring(x,x+1).equals(" "))
-                if (text.substring(x, x+1).equals(" "))
-                {
-                    morse.append(" "); 
-                    System.out.println(morse); 
-                }
-                if (text.substring(x, x+1).equals(DOT))
-                {
-                    decodeTree = decodeTree.getLeft(); 
-                }
-                if (text.substring(x, x+1).equals(DASH))
-                {
-                    decodeTree = decodeTree.getRight();
-                }
+            char c = text.charAt(0); 
+            c = Character.toUpperCase(c);
+            if (!(c==' ')) 
+            {
+                morse.append(codeMap.get(c));
             }
-            morse.append(decodeTree.getValue()); 
-            System.out.println(morse); 
+            else{
+                morse.append(" ");
+            }
+            morse.append(" ");
+            
+            text = text.substring(1); 
+        }
+        
+
 
         return morse.toString();
     }
@@ -161,14 +156,36 @@ public class MorseCode
     public static String decode(String morse)
     {
         StringBuffer text = new StringBuffer(100); 
-        for (int x = 0; x < morse.length(); x++)
+        TreeNode currentNode = decodeTree;
+        while(!morse.equals(""))
         {
-            if (morse.substring(x, x+1).equals(decodeTree.getValue()))
+            System.out.println(currentNode.getValue());
+            char c = morse.charAt(0); 
+            if (c == '.')
             {
-                text.append(decodeTree.getValue()); 
-            } 
-            decode(morse); 
-           
+                
+                if (currentNode.getLeft() == null)
+                {
+                    break;
+                }
+            
+                currentNode = currentNode.getLeft();
+            } else if (c == '-')
+            {
+                
+                if (currentNode.getRight() == null)
+                {
+                    break;
+                }
+                
+                currentNode = currentNode.getRight(); 
+            } else 
+            {
+                text.append(currentNode.getValue()); 
+                currentNode = decodeTree;
+                
+            }
+            morse = morse.substring(1);
         }
         return text.toString();
     }
